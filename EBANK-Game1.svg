@@ -23,6 +23,7 @@
       const wheel = document.querySelector('.wheel');
       const pointer = document.querySelector('.pointer');
       const text = document.querySelector('.text');
+      const svg = document.querySelector('svg');
 
       function spin() {
         if (spinning) return;
@@ -42,8 +43,7 @@
         }, duration);
       }
 
-      pointer.addEventListener('click', spin);
-      text.addEventListener('click', spin);
+      svg.addEventListener('click', spin);
     ]]>
   </script>
 </svg>
