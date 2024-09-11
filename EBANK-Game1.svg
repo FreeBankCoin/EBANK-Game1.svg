@@ -1,0 +1,49 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .wheel {
+      fill: #f39c12;
+      stroke: #e67e22;
+      stroke-width: 5;
+    }
+    .pointer {
+      fill: #e74c3c;
+    }
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      fill: #2c3e50;
+    }
+  </style>
+  <circle class="wheel" cx="200" cy="200" r="180"/>
+  <polygon class="pointer" points="200,10 220,50 180,50"/>
+  <text class="text" x="200" y="200" text-anchor="middle" dy=".3em">Spin</text>
+  <script type="application/ecmascript">
+    <![CDATA[
+      let spinning = false;
+      const wheel = document.querySelector('.wheel');
+      const pointer = document.querySelector('.pointer');
+      const text = document.querySelector('.text');
+
+      function spin() {
+        if (spinning) return;
+        spinning = true;
+        const duration = Math.random() * 3000 + 2000;
+        const rotation = Math.random() * 360 + 720;
+        wheel.style.transition = `transform ${duration}ms ease-out`;
+        wheel.style.transform = `rotate(${rotation}deg)`;
+        setTimeout(() => {
+          spinning = false;
+          const result = Math.random();
+          if (result < 0.1) {
+            window.location.href = 'https://ongpadi.org';
+          } else {
+            alert('Try again!');
+          }
+        }, duration);
+      }
+
+      pointer.addEventListener('click', spin);
+      text.addEventListener('click', spin);
+    ]]>
+  </script>
+</svg>
